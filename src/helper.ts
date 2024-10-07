@@ -40,7 +40,11 @@ export function totalDaysUntilMonth(
       totalDays += bsMonths[userYear - bsBaseYear][month];
     }
   } else {
-    for (let month = 1; month < adMonth; month++) {
+    for (
+      let month = userYear === adBaseYear ? 4 : 1;
+      month < adMonth;
+      month++
+    ) {
       if (month === 2) {
         totalDays += isLeapYear(userYear) ? 29 : 28; // February
       } else {
@@ -68,7 +72,7 @@ export function totalDaysUntilMonth(
  * @param totalDays - The total number of days from the AD base year.
  * @returns An object containing the year, month, and day in the BS calendar.
  */
-export function getBSFullDate(totalDays: number, isBS = false) {
+export function getFullDate(totalDays: number, isBS = false) {
   if (isBS) {
     const date = new Date(1943, 3, 13);
     date.setDate(date.getDate() + totalDays);
@@ -104,5 +108,5 @@ export function getBSFullDate(totalDays: number, isBS = false) {
   }
 
   // If totalDays exceeds the total days in the BS calendar, return null or an appropriate value
-  return null;
+  return { year: 0, month: 0, day: 0 };
 }
