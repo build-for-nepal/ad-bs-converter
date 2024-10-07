@@ -1,0 +1,20 @@
+{
+  "name": "ad-bs-converter",
+  "version": "1.0.0",
+  "description": "AD BS converter",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index"
+  },
+  "keywords": [
+    "ad-bs",
+    "bs-ad",
+    "converter",
+    "nepali-date-converter"
+  ],
+  "author": "Techgaun Nepal",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.6.2"
+  }
+}
