@@ -1,4 +1,10 @@
-import { adBaseYear, bsBaseYear, bsYearsWithMonthTotal } from "./constant";
+import {
+  adBaseDay,
+  adBaseMonth,
+  adBaseYear,
+  bsBaseYear,
+  bsYearsWithMonthTotal,
+} from "./constant";
 
 // Function to determine if a given year is a leap year
 export function isLeapYear(year: number): boolean {
@@ -73,7 +79,7 @@ export function totalDaysUntilMonth(
  */
 export function getFullDate(totalDays: number, fromBS = false) {
   if (fromBS) {
-    const date = new Date(Date.UTC(1918, 3, 12)); // Use Date.UTC to avoid local timezone issues
+    const date = new Date(Date.UTC(adBaseYear, adBaseMonth - 1, adBaseDay - 1)); // Use Date.UTC to avoid local timezone issues
     date.setUTCDate(date.getUTCDate() + totalDays); // Add totalDays in UTC
 
     // Reset the time to 00:00:00 UTC

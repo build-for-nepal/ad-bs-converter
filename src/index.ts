@@ -1,4 +1,4 @@
-import { adBaseYear } from "./constant";
+import { adBaseDay, adBaseMonth, adBaseYear, remainingDays } from "./constant";
 import {
   calculateDaysFromBaseYear,
   getFullDate,
@@ -12,7 +12,7 @@ import {
 } from "./utils/type";
 
 // Function to convert AD date to BS date
-const adToBS = (params: AdToBSParams) => {
+module.exports.adToBS = (params: AdToBSParams) => {
   const { adYear, adMonth, adDay } = params;
   return convertDate({
     year: adYear,
@@ -22,7 +22,7 @@ const adToBS = (params: AdToBSParams) => {
 };
 
 // Function to convert AD date to BS date
-const bsToAD = (params: BsToADParams) => {
+module.exports.bsToAD = (params: BsToADParams) => {
   const { bsDay, bsMonth, bsYear } = params;
   return convertDate({
     year: bsYear,
@@ -39,7 +39,7 @@ function convertDate({
   day,
   fromBS,
 }: ConvertDateParams): ResponseType {
-  let totalDays = fromBS ? 0 : year === adBaseYear ? 0 : 263; //remaing days from 1918-April-12 to 1943-Dec-31
+  let totalDays = fromBS ? 0 : year === adBaseYear ? 0 : remainingDays; //remaing days from 1918-April-12 to 1943-Dec-31
   /*
     This function calculates the total number of days from the year after the base year up to (but not including) the specified year.
     For example, if the user inputs 2024, it sums the total days for each year from (baseYear + 1) to 2023.
@@ -67,12 +67,9 @@ function convertDate({
   */
   totalDays += fromBS
     ? day
-    : year === adBaseYear && month === 4
-    ? day - 12
+    : year === adBaseYear && month === adBaseMonth
+    ? day - adBaseDay - 1
     : day;
 
   return getFullDate(totalDays, fromBS);
 }
-
-// console.log(bsToAD({ bsYear: 1996, bsMonth: 10, bsDay: 11 }));
-console.log(adToBS({ adYear: 1940, adMonth: 1, adDay: 24 }));
