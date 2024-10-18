@@ -73,3 +73,6 @@ function convertDate({
 
   return getFullDate(totalDays, fromBS);
 }
+
+// console.log(bsToAD({ bsYear: 1996, bsMonth: 10, bsDay: 11 }));
+console.log(adToBS({ adYear: 1940, adMonth: 1, adDay: 24 }));

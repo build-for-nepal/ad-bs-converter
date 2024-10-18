@@ -1,4 +1,4 @@
-import { adBaseYear, bsBaseYear, yearWithMonthTotal } from "./constant";
+import { adBaseYear, bsBaseYear, bsYearsWithMonthTotal } from "./constant";
 
 // Function to determine if a given year is a leap year
 export function isLeapYear(year: number): boolean {
@@ -14,7 +14,7 @@ export function calculateDaysFromBaseYear(
   if (fromBS) {
     for (let year = 0; year < userYear - bsBaseYear; year++) {
       for (let month = 0; month < 12; month++) {
-        totalDays += yearWithMonthTotal[year][month];
+        totalDays += bsYearsWithMonthTotal[year][month];
       }
     }
   } else {
@@ -36,7 +36,7 @@ export function totalDaysUntilMonth(
 
   if (fromBS) {
     for (let month = 1; month < userMonth; month++) {
-      totalDays += yearWithMonthTotal[userYear - bsBaseYear][month - 1];
+      totalDays += bsYearsWithMonthTotal[userYear - bsBaseYear][month - 1];
     }
   } else {
     for (
@@ -93,14 +93,14 @@ export function getFullDate(totalDays: number, fromBS = false) {
     let monthIndex = 0; // Index for the month in the BS year
     let day = 0; // The day in the month
 
-    for (const year of yearWithMonthTotal) {
+    for (const year of bsYearsWithMonthTotal) {
       for (let monthIndex = 0; monthIndex < year.length; monthIndex++) {
         const daysInMonth = year[monthIndex]; // Get the days in the current month
         bsDays += daysInMonth; // Accumulate days
 
         // Check if the accumulated days surpass the totalDays
         if (bsDays >= totalDays) {
-          yearIndex = yearWithMonthTotal.indexOf(year);
+          yearIndex = bsYearsWithMonthTotal.indexOf(year);
           day = totalDays - (bsDays - daysInMonth); // Calculate the specific day
           return {
             year: bsBaseYear + yearIndex,

@@ -2,7 +2,7 @@ export const bsBaseYear = 1975; // The base year for BS (1975 BS corresponds to 
 export const adBaseYear = 1918; // The base year for AD
 
 // 2D array where each inner array corresponds to a BS year
-export const yearWithMonthTotal: number[][] = [
+export const bsYearsWithMonthTotal: number[][] = [
   [31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30], //1975 BS
   [31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31],
   [30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31],
