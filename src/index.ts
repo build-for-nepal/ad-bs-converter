@@ -2,32 +2,28 @@ import { adBaseDay, adBaseMonth, adBaseYear, remainingDays } from "./constant";
 import {
   calculateDaysFromBaseYear,
   getFullDate,
+  parseDate,
   totalDaysUntilMonth,
 } from "./helper";
-import {
-  AdToBSParams,
-  BsToADParams,
-  ConvertDateParams,
-  ResponseType,
-} from "./utils/type";
+import { ConvertDateParams, ResponseType } from "./utils/type";
 
 // Function to convert AD date to BS date
-module.exports.adToBS = (params: AdToBSParams) => {
-  const { adYear, adMonth, adDay } = params;
+module.exports.adToBS = (userDate: string) => {
+  const { year, month, day } = parseDate(userDate);
   return convertDate({
-    year: adYear,
-    month: adMonth,
-    day: adDay,
+    year,
+    month,
+    day,
   });
 };
 
 // Function to convert AD date to BS date
-module.exports.bsToAD = (params: BsToADParams) => {
-  const { bsDay, bsMonth, bsYear } = params;
+module.exports.bsToAD = (userDate: string) => {
+  const { year, month, day } = parseDate(userDate);
   return convertDate({
-    year: bsYear,
-    month: bsMonth,
-    day: bsDay,
+    year,
+    month,
+    day,
     fromBS: true,
   });
 };

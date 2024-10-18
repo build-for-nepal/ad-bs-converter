@@ -5,6 +5,7 @@ import {
   bsBaseYear,
   bsYearsWithMonthTotal,
 } from "./constant";
+import { ConvertDateParams } from "./utils/type";
 
 // Function to determine if a given year is a leap year
 export function isLeapYear(year: number): boolean {
@@ -120,4 +121,33 @@ export function getFullDate(totalDays: number, fromBS = false) {
 
   // If totalDays exceeds the total days in the BS calendar, return null or an appropriate value
   return { year: 0, month: 0, day: 0 };
+}
+
+export function parseDate(dateString: string): ConvertDateParams {
+  // Define a regular expression for the official date format (YYYY/MM/DD, YYYY-MM-DD, or YYYY MM DD)
+  const OFFICIAL_FORMAT =
+    /(\d{4})\s*([/-]|\s+)\s*(\d{1,2})\s*([/-]|\s+)\s*(\d{1,2})/;
+
+  // Define a regular expression for the Georgian date format (DD/MM/YYYY, DD-MM-YYYY, or DD MM YYYY)
+  const GEORGIAN_FORMAT =
+    /(\d{1,2})\s*([/-]|\s+)\s*(\d{1,2})\s*([/-]|\s+)\s*(\d{4})/;
+
+  let match: RegExpMatchArray | null;
+  match = dateString.match(OFFICIAL_FORMAT);
+  if (match !== null) {
+    return {
+      year: parseInt(match[1], 10),
+      month: parseInt(match[3], 10),
+      day: parseInt(match[5], 10),
+    };
+  }
+  match = dateString.match(GEORGIAN_FORMAT);
+  if (match !== null) {
+    return {
+      year: parseInt(match[5], 10),
+      month: parseInt(match[3], 10),
+      day: parseInt(match[1], 10),
+    };
+  }
+  throw new Error("Invalid date format");
 }
