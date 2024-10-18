@@ -17,12 +17,12 @@ export interface ConvertDateParams {
   year: number;
   month: number;
   day: number;
-  toBs?: boolean; // Optional flag indicating direction of conversion
+  fromBS?: boolean; // Optional flag indicating bs to ad conversion
 }
 
 // Interface for the response of the date conversion
 export interface ResponseType {
-  year: number; // The converted year in BS
-  month: number; // The converted month in BS
-  day: number; // The converted day in BS
+  year: number;
+  month: number;
+  day: number;
 }

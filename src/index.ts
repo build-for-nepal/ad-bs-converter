@@ -12,9 +12,9 @@ import {
 } from "./utils/type";
 
 // Function to convert AD date to BS date
-module.exports.adToBS = (params: AdToBSParams) => {
+const adToBS = (params: AdToBSParams) => {
   const { adYear, adMonth, adDay } = params;
-  convertDate({
+  return convertDate({
     year: adYear,
     month: adMonth,
     day: adDay,
@@ -22,31 +22,29 @@ module.exports.adToBS = (params: AdToBSParams) => {
 };
 
 // Function to convert AD date to BS date
-module.exports.bsToAD = (params: BsToADParams) => {
+const bsToAD = (params: BsToADParams) => {
   const { bsDay, bsMonth, bsYear } = params;
-  convertDate({
+  return convertDate({
     year: bsYear,
     month: bsMonth,
     day: bsDay,
-    toBs: true,
+    fromBS: true,
   });
 };
 
-// Here toBS is a flag to indicate that the request is coming from the bsToAD function
+// Here fromBS is a flag to indicate that the request is coming from the bsToAD function
 function convertDate({
   year,
   month,
   day,
-  toBs,
+  fromBS,
 }: ConvertDateParams): ResponseType {
-  let totalDays = toBs ? 0 : year === adBaseYear ? 0 : 262; //remaing days from 1943-April-14 to 1943-Dec-31
-
+  let totalDays = fromBS ? 0 : year === adBaseYear ? 0 : 263; //remaing days from 1918-April-12 to 1943-Dec-31
   /*
     This function calculates the total number of days from the year after the base year up to (but not including) the specified year.
     For example, if the user inputs 2024, it sums the total days for each year from (baseYear + 1) to 2023.
   */
-  totalDays += calculateDaysFromBaseYear(year, toBs);
-
+  totalDays += calculateDaysFromBaseYear(year, fromBS);
   /* 
     Add the total days from January up to the specified month (adMonth) in the current year (adYear).
     For example, if adYear is 2024 and adMonth is 4 (April):
@@ -56,7 +54,7 @@ function convertDate({
     The total days from January to March would be 31 + 29 + 31 = 91 days.
     Therefore, this line will sum the days for all months from January to the month prior to April.
   */
-  totalDays += totalDaysUntilMonth(year, month, toBs);
+  totalDays += totalDaysUntilMonth(year, month, fromBS);
 
   /* 
     Finally, add the days of the current month (adDay) to the total days.
@@ -67,7 +65,11 @@ function convertDate({
       the total days up to March (91) plus the current day (15).
     So, the final calculation would be 91 + 15 = 106 days.
   */
-  totalDays += toBs ? day : year === adBaseYear && month === 4 ? day - 13 : day;
+  totalDays += fromBS
+    ? day
+    : year === adBaseYear && month === 4
+    ? day - 12
+    : day;
 
-  return getFullDate(totalDays, toBs);
+  return getFullDate(totalDays, fromBS);
 }
