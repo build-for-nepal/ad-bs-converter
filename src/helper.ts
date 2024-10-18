@@ -97,7 +97,6 @@ export function getFullDate(totalDays: number, fromBS = false) {
   } else {
     let bsDays = 0; // Total accumulated days in the BS calendar
     let yearIndex = 0; // Index for the BS year
-    let monthIndex = 0; // Index for the month in the BS year
     let day = 0; // The day in the month
 
     for (const year of bsYearsWithMonthTotal) {
