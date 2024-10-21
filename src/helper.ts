@@ -63,17 +63,6 @@ export function totalDaysUntilMonth(
 
 /**
  * Converts a total number of days into a full date in the BS (Bikram Sambat) calendar.
- *
- * This function iterates through the months of the BS calendar, summing the total days until it reaches
- * or exceeds the provided totalDays. Once the correct month and day are found, it calculates the year,
- * month, and day based on the accumulated days.
- *
- * Example:
- * If totalDays is 55:
- * - It will iterate through the months of the BS year, summing the days until it surpasses 55.
- * - Suppose it finds that 55 days falls within the second month (e.g., Falgun) of the BS year 2080.
- * - The function will return { year: 2080, month: 2, day: (55 - total days until Falgun) }.
- *
  * @param totalDays - The total number of days from the AD base year.
  * @returns An object containing the year, month, and day in the BS calendar.
  */
