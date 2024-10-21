@@ -7,7 +7,6 @@ import {
 } from "./constant";
 import { ConvertDateParams } from "./utils/type";
 
-// Function to determine if a given year is a leap year
 export function isLeapYear(year: number): boolean {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 }
