@@ -126,8 +126,8 @@ export function parseDate(dateString: string): ConvertDateParams {
   const OFFICIAL_FORMAT =
     /(\d{4})\s*([/-]|\s+)\s*(\d{1,2})\s*([/-]|\s+)\s*(\d{1,2})/;
 
-  // Define a regular expression for the Georgian date format (DD/MM/YYYY, DD-MM-YYYY, or DD MM YYYY)
-  const GEORGIAN_FORMAT =
+  // Define a regular expression for the Gregorian date format (DD/MM/YYYY, DD-MM-YYYY, or DD MM YYYY)
+  const GREGORIAN_FORMAT =
     /(\d{1,2})\s*([/-]|\s+)\s*(\d{1,2})\s*([/-]|\s+)\s*(\d{4})/;
 
   let match: RegExpMatchArray | null;
@@ -139,7 +139,7 @@ export function parseDate(dateString: string): ConvertDateParams {
       day: parseInt(match[5], 10),
     };
   }
-  match = dateString.match(GEORGIAN_FORMAT);
+  match = dateString.match(GREGORIAN_FORMAT);
   if (match !== null) {
     return {
       year: parseInt(match[5], 10),
