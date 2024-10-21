@@ -18,7 +18,7 @@
     "techgaun-date-converter",
     "date-converter"
   ],
-  "author": "Techgaun",
+  "author": "Techgaun Nepal",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.7.4",
