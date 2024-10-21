@@ -1,20 +1,28 @@
 {
   "name": "ad-bs-converter",
   "version": "1.0.0",
-  "description": "AD BS converter",
-  "main": "index.js",
+  "description": "AD to BS date converter and vice versa",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/index"
+    "start": "node dist/index.js",
+    "dev": "nodemon --watch src --exec ts-node src/index.ts",
+    "build": "tsc"
   },
   "keywords": [
     "ad-bs",
     "bs-ad",
     "converter",
-    "nepali-date-converter"
+    "nepali-date-converter",
+    "ad-bs-converter",
+    "bs-ad-converter",
+    "techgaun-date-converter",
+    "date-converter"
   ],
   "author": "Techgaun Nepal",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^22.7.4",
+    "ts-node": "^10.9.1",
     "typescript": "^5.6.2"
   }
 }
