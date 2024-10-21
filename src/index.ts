@@ -8,7 +8,7 @@ import {
 import { ConvertDateParams, ResponseType } from "./utils/type";
 
 // Function to convert AD date to BS date
-module.exports.adToBS = (userDate: string) => {
+export const adToBS = (userDate: string) => {
   const { year, month, day } = parseDate(userDate);
   return convertDate({
     year,
@@ -18,7 +18,7 @@ module.exports.adToBS = (userDate: string) => {
 };
 
 // Function to convert AD date to BS date
-module.exports.bsToAD = (userDate: string) => {
+export const bsToAD = (userDate: string) => {
   const { year, month, day } = parseDate(userDate);
   return convertDate({
     year,
