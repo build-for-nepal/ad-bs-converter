@@ -12,8 +12,13 @@ describe("ad to bs testing", () => {
     expect(result).toHaveProperty("year", 2081);
   });
 
+  it("should return current date if the input is empty", () => {
+    const result = adToBS();
+    expect(result).toHaveProperty("year", 2081);
+  });
+
   it("should throw an error if date is not valid", () => {
-    const args = ["20222-222-222", "", "hello"];
+    const args = ["20222-222-222", "hello"];
     args.forEach((arg) => {
       expect(() => {
         adToBS(arg);
@@ -29,8 +34,18 @@ describe("bs to ad testing", () => {
     expect(result).toMatchObject({ year: 1996, month: 10, day: 11 });
   });
 
+  it("should return current date if the input is empty", () => {
+    const result = bsToAD();
+    const date = new Date();
+    expect(result).toMatchObject({
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate(),
+    });
+  });
+
   it("should throw an error if date is not valid", () => {
-    const args = ["20222-222-222", "", "hello"];
+    const args = ["20222-222-222", "hello"];
     args.forEach((arg) => {
       expect(() => {
         adToBS(arg);

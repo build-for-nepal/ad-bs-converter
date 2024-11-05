@@ -110,7 +110,10 @@ export function getFullDate(totalDays: number, fromBS = false) {
   return { year: 0, month: 0, day: 0 };
 }
 
-export function parseDate(userDate: string | number): ConvertDateParams {
+export function parseDate(
+  userDate: string | number,
+  fromAD = true
+): ConvertDateParams {
   if (typeof userDate === "string") {
     // Define a regular expression for the official date format (YYYY/MM/DD, YYYY-MM-DD, or YYYY MM DD)
     const OFFICIAL_FORMAT =
