@@ -6,6 +6,12 @@ describe("ad to bs testing", () => {
     // expect(result).toHaveProperty("year", 2053);
     expect(result).toMatchObject({ year: 2053, month: 6, day: 25 });
   });
+
+  it("should return current date", () => {
+    const result = adToBS(Date.now());
+    expect(result).toHaveProperty("year", 2081);
+  });
+
   it("should throw an error if date is not valid", () => {
     const args = ["20222-222-222", "", "hello"];
     args.forEach((arg) => {
@@ -22,6 +28,7 @@ describe("bs to ad testing", () => {
     // expect(result).toHaveProperty("year", 1996);
     expect(result).toMatchObject({ year: 1996, month: 10, day: 11 });
   });
+
   it("should throw an error if date is not valid", () => {
     const args = ["20222-222-222", "", "hello"];
     args.forEach((arg) => {
