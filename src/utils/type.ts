@@ -1,8 +1,8 @@
 // Interface for parameters of convertDate function
 export interface ConvertDateParams {
-  year: number;
-  month: number;
-  day: number;
+  year?: number;
+  month?: number;
+  day?: number;
   fromBS?: boolean; // Optional flag indicating bs to ad conversion
 }
 
