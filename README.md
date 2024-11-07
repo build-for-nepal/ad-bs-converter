@@ -2,6 +2,8 @@
 
 This package provides utility functions to convert dates from AD (Gregorian) to BS (Bikram Sambat) and vice versa. It is especially useful for handling date conversions between the two widely used calendar systems in Nepal.
 
+This [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) file provides a structured, technical overview for developers working with or contributing to the `ad-bs-converter` package.
+
 ## Installation
 
 To install the package, run:
