@@ -40,6 +40,9 @@ bsToAD("2053-06-25"); // Returns {year:1996, month:10, day:11}
 adToBS("1996-10-11"); // Returns {year:2053, month:06, day:25}
 ```
 
+### Parameters the function can take
+
+**String**  
 Provide a valid date string. The current supported formats are:
 
 ```
@@ -51,7 +54,7 @@ Provide a valid date string. The current supported formats are:
   DD MM YYYY
 ```
 
-### Example:
+Example
 
 ```js
 bsToAD("2051/02/01"); // YYYY/MM/DD
@@ -60,4 +63,25 @@ bsToAD("2051 02 01");
 bsToAD("01/02/2051"); // DD/MM/YYYY
 bsToAD("01-02-2051");
 bsToAD("01 02 2051");
+```
+
+**Number**
+
+The number value represents the UTC timestamp that will be converted to Nepali date.
+
+> **Note:** this is only available in `adToBs` function.
+
+Example:
+
+```js
+adToBs(1589638162879);
+```
+
+**Empty Value**
+
+If no values are provided, the current day date will be returned.
+
+```js
+adToBS(); // will return the current bs date
+bsToAD(); // will return the current ad date
 ```
